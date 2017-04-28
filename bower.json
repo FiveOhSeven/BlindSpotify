@@ -1,0 +1,16 @@
+{
+  "name": "Blind Spotify",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "latest",
+    "font-awesome": "latest",
+    "angular": "latest",
+    "angular-route": "latest",
+    "angular-spotify": "^1.4.3",
+    "angular-audio": "^1.7.3",
+    "angular-scroll-glue": "^2.2.0"
+  },
+  "resolutions": {
+    "angular": "1.6.4"
+  }
+}

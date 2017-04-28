@@ -1,0 +1,47 @@
+<div class="jumbotron text-left" ng-show="tracks">
+	<div class="albumView">
+		<img height="250vw" width="250vw" ng-src="{{image}}" align="left" />
+
+		<h1 class="display-3">
+			{{ name }}
+			<br/>
+		</h1>
+		<h3 class="">
+			By {{tracks[0].artists[0].name}}
+
+		</h2>
+	</div>
+
+	<table class="table table-striped">
+		<thead class="thead-inverse">
+			<tr>
+				<th>
+					#
+				</th>
+				<th>
+					Song
+				</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="data in tracks">
+				<th scope="row">
+					{{$index + 1}}
+				</th>
+
+				<td ng-click="songFactory(data.name, data.artists[0].name, image, data.preview_url, '/app/album/' + id)">
+
+					<div class="trackName">
+
+						{{data.name}}
+
+					</div>
+				</td>
+
+
+			</tr>
+		</tbody>
+	</table>
+
+</div>

@@ -1,0 +1,39 @@
+<div class="jumbotron text-center">
+	<h1>Songs</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 q1">
+				Previous Queue:
+				<br/>
+				<span ng-repeat="a in prevQueue">
+					<img ng-src="{{a.image}}" height="100px">
+					<br/>
+				</span>
+			</div>
+			<div class="col-md-4 q2">
+				Current Queue:
+				<br/>
+				<img ng-src="{{current.image}}" height="100px">
+			</div>
+			<div class="col-md-4 q3">
+				Up Next Queue:
+				<br/>
+				<span ng-repeat="a in nextQueue">
+					<img ng-src="{{a.image}}" height="100px">
+					<br/>
+				</span>
+			</div>
+		</div>
+
+	</div>
+
+<!--
+	<p>{{ message }}</p>
+	<p>{{user}}</p>
+	<p>{{prevQueue}}</p>
+	<p>{{prevQueue.length}}</p>
+
+	<p>{{nextQueue}}</p>
+	<p>{{current}}</p>
+	-->
+</div>

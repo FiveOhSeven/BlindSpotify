@@ -1,0 +1,12 @@
+{
+	"name": "BlindSpotify",
+	"version": "0.0.0",
+	"description": "Blind accessibility options for Spotify",
+	"main": "server.js",
+	"repository": "",
+	"author": "Andrew Whang",
+	"dependencies": {
+		"express": "^4.14.0",
+		"spotify-web-api-node": "^2.3.6"
+	}
+}

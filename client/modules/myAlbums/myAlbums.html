@@ -1,0 +1,20 @@
+<div class="jumbotron text-center" ng-show="albums">
+	<!--<h1>Home Page</h1>-->
+	<h1> My Albums
+	</h1>
+		
+	<p>
+	</p>
+	<div class="playLists">
+
+		<div ng-repeat="list in albums" class="featured">
+			<a href="/app/album/{{list.album.id}}">
+				<img ng-src="{{list.album.images[0].url}}" height="200px" width="200px" />
+				<div class='listBot'>
+					{{list.album.name}}
+				</div>
+			</a>
+		</div>
+	</div>
+
+</div>

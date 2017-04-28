@@ -1,0 +1,22 @@
+<div class="jumbotron text-center">
+	<!--<h1>Home Page</h1>-->
+	<h1> Discover Great Music
+	</h1>
+
+	<p>
+		A playlist for every moment of the day
+	</p>
+	<p>
+	</p>
+	<div class="playLists" >
+
+		<div ng-repeat="list in featuredPlaylists" class="featured">
+			<a href="/app/{{list.owner.id}}/playlist/{{list.id}}">
+				<img ng-src="{{list.images[0].url}}" height="200px" width="200px" />
+				<div class='listBot'>
+					{{list.name}}
+				</div>
+			</a>
+		</div>
+	</div>
+</div>

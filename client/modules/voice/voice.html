@@ -1,0 +1,52 @@
+<div class="jumbotron text-center" scroll-glue>
+	<h1>Voice Recognition</h1>
+		<p>
+			Commands: Play *song, queue *song, play favorites, next song, previous song, my playlists, current song, pause, play
+		</p>
+	<div class="conversation">
+
+		<div class="container" >
+			<div ng-repeat="n in conversation" >
+				<div class="row">
+					<div class="col-md-4">
+						
+					</div>
+					<div class="command col-md-8">
+						<div>
+							{{n.command}}
+						</div>
+					</div>
+				</div>
+				<div class="row spacer">
+				</div>
+				<div class="row">
+
+					<div class="response col-md-8">
+						<div>
+							{{n.response}}
+						</div>
+					</div>
+				</div>
+				<div class="row spacer">
+				</div>
+
+			</div>
+			<span ng-show="recording">
+				Voice Recognition is ON
+			</span>	
+			<span ng-hide="recording">
+				Voice Recognition is OFF
+			</span>
+			<div class="bottom">
+			</div>
+
+			<!--<button type="button" class="btn btn-primary" onClick="annyang.abort()">-->
+			<!--	Stop annyang-->
+			<!--</button>-->
+
+			<!--<button type="button" class="btn btn-primary" ng-click="render()">-->
+			<!--	Start annyang-->
+			<!--</button>-->
+		</div>
+	</div>
+</div>

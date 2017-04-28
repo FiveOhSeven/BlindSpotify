@@ -1,0 +1,323 @@
+.navbar a {
+	color: inherit;
+}
+
+.navbar a:hover {
+	text-decoration: none;
+}
+
+.navbar {
+	display: inline-block;
+	float: none;
+	text-align: left;
+}
+
+.sidebar {
+	position: fixed;
+	top: 51px;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	padding: 20px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	border-right: 1px solid #eee;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.sideBar li:hover {
+	background-color: #eceeef;
+}
+
+.sidebar .nav {
+	margin-bottom: 20px;
+}
+
+.sidebar .nav-item {
+	width: 100%;
+}
+
+.sidebar .nav-item+.nav-item {
+	margin-left: 0;
+}
+
+.sidebar .nav-link {
+	border-radius: 0;
+}
+
+.item {
+	margin-left: 2em;
+}
+
+.sidebarR {
+	position: fixed;
+	top: 51px;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	padding-top: 20px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	border-left: 1px solid #eee;
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.playerControl {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+	height: 21.4vw;
+	width: 16vw;
+	margin: auto;
+	background-color: white;
+}
+
+.coverBox {
+	width: 16vw;
+	height: 16vw;
+	background-color: #292b2c;
+	margin: auto;
+	font-size: 8vw;
+}
+
+.coverBox img {
+	height: 100%;
+	width: 100%;
+}
+
+.current {
+	display: inline-block;
+	float: none;
+	text-align: center;
+	width: 15.9vw;
+	margin: auto;
+	height: 2.4vw;
+	background-color: white;
+	color: black;
+	font-size: 1.1vw;
+	font-family: 'Work Sans', sans-serif;
+	cursor: default;
+	padding-top: .5vw;
+	white-space: nowrap;
+	overflow: hidden;
+	border-bottom: solid 1px #eceeef;
+}
+
+.controlBox {
+	font-size: 2vw;
+	background-color: white;
+	width: 15.9vw;
+	height: 3vw;
+	margin: auto;
+	z-index: -2;
+}
+
+.controlBox i {
+	cursor: pointer;
+}
+
+.prevButton {
+	left: 3vw;
+	padding-top: .5vw;
+	position: absolute;
+}
+
+.playButton {
+	left: 7vw;
+	position: absolute;
+	font-size: 3vw;
+}
+
+.nextButton {
+	left: 12.5vw;
+	padding-top: .5vw;
+	position: absolute;
+}
+
+body {
+	padding-top: 50px;
+}
+
+.jumbotron {
+	min-height: 93%;
+	overflow: auto;
+	overflow-x: auto;
+	width: 100%;
+	padding-top: 20px;
+}
+
+.jumbotron h1 {
+	display: inline-block;
+	float: none;
+	text-align: center;
+	padding-top: 10px;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+.featured {
+	display: inline-block;
+	height: 250px;
+	width: 200px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	background-color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.featured:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.featured a {
+	cursor: default;
+	text-decoration: none;
+	color: inherit;
+}
+
+.listBot {
+	margin: auto;
+	padding-top: 10px;
+	white-space: nowrap;
+	overflow-x: scroll;
+}
+
+.hero-unit h1 {
+	display: inline-block;
+	float: none;
+	margin: none;
+}
+
+.albumName a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.albumView {
+	white-space: nowrap;
+}
+
+.trackName:hover {
+	cursor: pointer;
+}
+
+.voiceCommand {
+	position: absolute;
+	top: 25vw;
+	left: .3vw;
+	width: 16vw;
+	height: 7vw;
+	background-color: white;
+	margin: auto;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+	overflow-y: hidden;
+}
+
+.voiceCommand button {
+	margin: auto;
+	width: 100%;
+	height: 7vw;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.voiceCommand a:hover {
+	text-decoration: none;
+}
+
+.voiceCommand button p {
+	font-size: .8vw;
+}
+
+.mic {
+	font-size: 4vw;
+	margin: auto;
+	padding-top: .5vw;
+	height: 3.3vw;
+}
+
+.refresh {
+	position: absolute;
+	top: 34vw;
+	left: .3vw;
+	width: 16vw;
+	margin: auto;
+	height: 7vw;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.refresh button {
+	height: 7vw;
+}
+
+.refresh button p {
+	font-size: .8vw;
+}
+
+.refIc {
+	font-size: 3.6vw;
+	margin: auto;
+	padding-top: .5vw;
+	height: 4.5vw;
+}
+
+.conversation {
+	width: 80%;
+	min-height: 80%;
+	margin: auto;
+}
+
+.command {
+	text-align: right;
+	border-radius: 3px;
+	background-color: white;
+	box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.2);
+	font-size: 1.5vw;
+	padding: 1vw;
+}
+
+.response {
+	padding: 20px;
+	text-align: left;
+	border-radius: 3px;
+	background-color: white;
+	box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.2);
+	font-size: 1.5vw;
+	padding: 1vw;
+}
+
+.spacer {
+	height: 30px;
+}
+
+.command:after {
+	box-sizing: border-box;
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-width: 18px;
+	border-style: solid;
+	border-color: transparent transparent white transparent;
+	bottom: 0%;
+	right: -17px;
+}
+
+.response:after {
+	box-sizing: border-box;
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-width: 18px;
+	border-style: solid;
+	border-color: transparent transparent white transparent;
+	bottom: 0%;
+	left: -17px;
+}
+
+.jumbotron{
+	overflow-y: scroll;
+	height: 100%;
+}
