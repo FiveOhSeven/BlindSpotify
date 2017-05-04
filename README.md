@@ -9,4 +9,4 @@ First off, install all of the bower components with
 and then install all of the node modules with
 `npm install`
 
-To run the server, you simply run `server.js`.  However before you can do that, you must register for an application at Spotify and then replace the CLIENT KEY, CLIENT SECRET, and CALLBACK from the server.js file with your own values.  
+To run the server, you run `node server.js`.  However before you can do that, you must register for an application at Spotify and then add the environmental variables CLIENT_ID, CLIENT_SECRET, and CALLBACK_URI
