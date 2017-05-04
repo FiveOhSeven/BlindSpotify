@@ -8,9 +8,9 @@ var SpotifyWebApi = require('spotify-web-api-node');
 router.use(express.static(path.resolve(__dirname, 'client')));
 
 var spotifyApi = new SpotifyWebApi({
-	clientId: 'process.env.CLIENT_ID',
-	clientSecret: 'process.env.CLIENT_SECRET',
-	redirectUri: 'process.env.CALLBACK_URI'
+	clientId: process.env.CLIENT_ID,
+	clientSecret: process.env.CLIENT_SECRET,
+	redirectUri: process.env.CALLBACK_URI
 });
 
 var scopes = ['user-read-private',
