@@ -4,13 +4,14 @@ var express = require('express');
 var router = express();
 var server = http.createServer(router);
 var SpotifyWebApi = require('spotify-web-api-node');
+var mandatory = false;
 
 router.use(express.static(path.resolve(__dirname, 'client')));
 
 var spotifyApi = new SpotifyWebApi({
-	clientId: process.env.CLIENT_ID,
-	clientSecret: process.env.CLIENT_SECRET,
-	redirectUri: process.env.CALLBACK_URI
+	clientId: 'CLIENT_ID',
+	clientSecret: 'CLIENT_SECRET',
+	redirectUri: 'CALLBACK_URI'
 });
 
 var scopes = ['user-read-private',
@@ -32,6 +33,7 @@ router.use('/callback', function(req, res) {
 		spotifyApi.setAccessToken(data.body.access_token);
 		spotifyApi.setRefreshToken(data.body.refresh_token);
 	});
+	mandatory = true;
 	res.redirect('/app');
 });
 
@@ -49,6 +51,11 @@ router.post('/token/access', function(req, res) {
 	spotifyApi.resetAccessToken();
 	spotifyApi.resetRefreshToken();
 	res.json(tempObject);
+});
+
+router.get('/mandatory', function(req, res){
+	res.json(mandatory);
+	mandatory = false;
 });
 
 router.post('/token/refresh', function(req, res) {

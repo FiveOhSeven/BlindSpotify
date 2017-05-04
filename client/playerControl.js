@@ -19,37 +19,40 @@ function player($scope, $http, Spotify, ngAudio, $route, $location, $cookies, $w
 	$scope.current.object = ngAudio.load($scope.current.sound);
 	ngAudio.setUnlock(false);
 	var refreshCookie = $cookies.get('refreshCookie');
-	if (refreshCookie) {
-		if($cookies.get('refreshCookie') == "null"){
-			$window.location.href = '/';
-		}
-		var temp = {};
-		temp.refresh = $cookies.get('refreshCookie');
-		$http.post('/token/refresh', temp).then(function(response){
-			Spotify.setAuthToken(response.data);
-			Spotify.getCurrentUser().then(function(data) {
-				$scope.user = data.data.id;
-				initialize();
-			});
-		});
-
-	} else {
-		$http.post('/token/access').then(function(response) {
-			console.log(response);
-			if(response.data.access_token == null){
+	$http.get('/mandatory').then(function(response) {
+		if (refreshCookie && !response.data) {
+			if ($cookies.get('refreshCookie') == "null") {
+				$cookies.remove('refreshCookie');
 				$window.location.href = '/';
 			}
-			$cookies.put('refreshCookie', response.data.refresh_token);
-			Spotify.setAuthToken(response.data.access_token);
-			Spotify.getCurrentUser().then(function(data) {
-				$scope.user = data.data.id;
-				initialize();
+			var temp = {};
+			temp.refresh = $cookies.get('refreshCookie');
+			$http.post('/token/refresh', temp).then(function(response) {
+				Spotify.setAuthToken(response.data);
+				Spotify.getCurrentUser().then(function(data) {
+					$scope.user = data.data.id;
+					initialize();
+				});
 			});
 
-		}, function(error){
-			$window.location.href = '/';
-		});
-	}
+		} else {
+			$http.post('/token/access').then(function(response) {
+				$cookies.put('refreshCookie', response.data.refresh_token);
+				Spotify.setAuthToken(response.data.access_token);
+				Spotify.getCurrentUser().then(function(data) {
+					$scope.user = data.data.id;
+					initialize();
+				});
+				if (response.data.access_token == null) {
+					$cookies.remove('refreshCookie');
+					$window.location.href = '/';
+				}
+
+			}, function(error) {
+				$window.location.href = '/';
+			});
+		}
+	});
 
 	function initialize() {
 		Spotify.getUserPlaylists($scope.user).then(function(data) {
