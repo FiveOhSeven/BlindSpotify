@@ -8,15 +8,16 @@ var SpotifyWebApi = require('spotify-web-api-node');
 router.use(express.static(path.resolve(__dirname, 'client')));
 
 var spotifyApi = new SpotifyWebApi({
-	clientId: 'CLIENT ID',
-	clientSecret: 'CLIENT SECRET',
-	redirectUri: 'CALLBACK'
+	clientId: 'client_id',
+	clientSecret: 'client_secret',
+	redirectUri: 'callback_uri'
 });
-var scopes = 
-	['user-read-private',
+
+var scopes = ['user-read-private',
 	'user-library-read',
 	'user-top-read',
-	'playlist-read-private'];
+	'playlist-read-private'
+];
 
 //OAuthentication
 
@@ -28,7 +29,6 @@ router.use('/login', function(req, res) {
 router.use('/callback', function(req, res) {
 	var code = req.query.code;
 	spotifyApi.authorizationCodeGrant(code).then(function(data) {
-		console.log(data.body.access_token);
 		spotifyApi.setAccessToken(data.body.access_token);
 		spotifyApi.setRefreshToken(data.body.refresh_token);
 	});
@@ -42,16 +42,25 @@ router.use('/app*', function(req, res, next) {
 });
 
 //RESTful endpoints
-router.get('/token/a', function(req, res) {
-	res.json(spotifyApi.getAccessToken());
+router.post('/token/access', function(req, res) {
+	var tempObject = {};
+	tempObject.access_token = spotifyApi.getAccessToken();
+	tempObject.refresh_token = spotifyApi.getRefreshToken();
+	spotifyApi.resetAccessToken();
+	spotifyApi.resetRefreshToken();
+	res.json(tempObject);
 });
 
-router.post('/token/a', function(req, res) {
-	spotifyApi.refreshAccessToken().then(function (data) {
-	    spotifyApi.setAccessToken(data.body['access_token']);
-   		console.log(spotifyApi.getAccessToken());
-		res.send(spotifyApi.getAccessToken());
-	}, function(err){
+router.post('/token/refresh', function(req, res) {
+	var x = req.headers.cookie.split('=');
+	spotifyApi.setRefreshToken(x[1]);
+	spotifyApi.refreshAccessToken().then(function(data) {
+		spotifyApi.setAccessToken(data.body['access_token']);
+		var l = spotifyApi.getAccessToken();
+		spotifyApi.resetAccessToken();
+		spotifyApi.resetRefreshToken();
+		res.json(l);
+	}, function(err) {
 		res.send('Unable to refresh token ' + err);
 	});
 });

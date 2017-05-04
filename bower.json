@@ -8,7 +8,8 @@
     "angular-route": "latest",
     "angular-spotify": "^1.4.3",
     "angular-audio": "^1.7.3",
-    "angular-scroll-glue": "^2.2.0"
+    "angular-scroll-glue": "^2.2.0",
+    "angular-cookies": "^1.6.4"
   },
   "resolutions": {
     "angular": "1.6.4"

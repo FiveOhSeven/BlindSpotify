@@ -1,6 +1,6 @@
 angular.module('mainApp').controller('playerController', player);
 
-function player($scope, $http, Spotify, ngAudio, $route, $location) {
+function player($scope, $http, Spotify, ngAudio, $route, $location, $cookies, $window) {
 	$scope.authToken = 'a';
 	$scope.playlists = '';
 	$scope.playing = false;
@@ -18,15 +18,38 @@ function player($scope, $http, Spotify, ngAudio, $route, $location) {
 	$scope.temp = {};
 	$scope.current.object = ngAudio.load($scope.current.sound);
 	ngAudio.setUnlock(false);
-	$http.get('/token/a').then(function(response) {
-		$scope.authToken = response.data;
-		Spotify.setAuthToken($scope.authToken);
-		Spotify.getCurrentUser().then(function(data) {
-			$scope.user = data.data.id;
-			initialize();
+	var refreshCookie = $cookies.get('refreshCookie');
+	if (refreshCookie) {
+		if($cookies.get('refreshCookie') == "null"){
+			$window.location.href = '/';
+		}
+		var temp = {};
+		temp.refresh = $cookies.get('refreshCookie');
+		$http.post('/token/refresh', temp).then(function(response){
+			Spotify.setAuthToken(response.data);
+			Spotify.getCurrentUser().then(function(data) {
+				$scope.user = data.data.id;
+				initialize();
+			});
 		});
 
-	});
+	} else {
+		$http.post('/token/access').then(function(response) {
+			console.log(response);
+			if(response.data.access_token == null){
+				$window.location.href = '/';
+			}
+			$cookies.put('refreshCookie', response.data.refresh_token);
+			Spotify.setAuthToken(response.data.access_token);
+			Spotify.getCurrentUser().then(function(data) {
+				$scope.user = data.data.id;
+				initialize();
+			});
+
+		}, function(error){
+			$window.location.href = '/';
+		});
+	}
 
 	function initialize() {
 		Spotify.getUserPlaylists($scope.user).then(function(data) {
@@ -104,7 +127,7 @@ function player($scope, $http, Spotify, ngAudio, $route, $location) {
 	};
 
 	$scope.songFactory = function(name, artist, image, sound, link) {
-		if(sound == null){
+		if (sound == null) {
 			$scope.playPause();
 			responsiveVoice.speak("There is no song preview available for" + name);
 			return;
@@ -120,10 +143,10 @@ function player($scope, $http, Spotify, ngAudio, $route, $location) {
 		$scope.current = tempObject;
 		$scope.newSong();
 	};
-	
+
 	//reused code from song factory and newSong.  restructuring necessary
 	$scope.queueFactory = function(name, artist, image, sound, link) {
-		if(sound == null){
+		if (sound == null) {
 			return;
 		}
 		var tempObject = {};
@@ -141,7 +164,7 @@ function player($scope, $http, Spotify, ngAudio, $route, $location) {
 	};
 
 	$scope.refresh = function() {
-		$http.post('/token/a').then(function(response) {
+		$http.post('/token/refresh', $cookies.get('refreshCookie')).then(function(response) {
 			console.log(response.data);
 			Spotify.setAuthToken(response.data);
 		});

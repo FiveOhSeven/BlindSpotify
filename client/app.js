@@ -11,6 +11,7 @@ var mainApp = angular.module('mainApp',[
     'voiceModule',
     'spotify',
     'ngAudio',
+    'ngCookies'
     ]);
 
 // Disable hashbanging
